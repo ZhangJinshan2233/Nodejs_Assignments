@@ -1,11 +1,11 @@
 const config={
     //set up database
     database:{
-        DATABASE:'teachingmanagement',
-        USERNAME:'root',
-        PASSWORD:'1234567890',
+        DATABASE:'heroku_8a9dfd8ed76ed69',
+        USERNAME:'us-cdbr-iron-east-04.cleardb.net',
+        PASSWORD:'073b43d3',
         PORT:'3306',
-        HOST:'localhost'
+        HOST:'ba5300ad080b97'
     }
     
 }

@@ -10,6 +10,6 @@ const PORT=process.env.PORT||3000
 
 const server=http.createServer(app.callback());
 
-server.listen(PORT,'localhost',()=>{
+server.listen(PORT,()=>{
     console.log(`server is listening on port ${PORT}`)
 });
