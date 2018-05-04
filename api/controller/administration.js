@@ -76,7 +76,7 @@ module.exports={
                                 var  teacherStu={
                                     teacher_id:teacherId,
                                     student_id:stuid,
-                                    status:ctx.request.body.status
+                                    status:"Not suspend"
                                 }
 
                                  /*
