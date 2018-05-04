@@ -1,6 +1,6 @@
 
  /*
-    *refer  module
+    *adminster router
  */
 const Router=require('koa-router')
 const administrateController=require('../controller/administration')

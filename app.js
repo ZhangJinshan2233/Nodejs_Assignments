@@ -20,6 +20,7 @@ const bodyparser=require('koa-bodyparser');
 
     app.use(middleware.jsonFormat());
 
+    app.use(routers.homeRouter.routes());
     app.use(routers.adiminsterRouter.routes());
    
     //deal with all kinds of error
