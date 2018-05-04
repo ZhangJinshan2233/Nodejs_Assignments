@@ -1,6 +1,4 @@
 const config={
-    //start port
-    port:3000,
     //set up database
     database:{
         DATABASE:'teachingmanagement',
