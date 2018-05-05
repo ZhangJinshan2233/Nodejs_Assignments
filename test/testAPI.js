@@ -7,16 +7,22 @@ chai.use(chaiHttp);
 
 describe('Test API',function(){
     
-    //*** test path register ***//
+     /*
+    *test path register
+    */
 
-    it('should return HTTP Code 204',(done)=>{
+    it('should return HTTP Code 204 for path register',(done)=>{
+
         chai.request(server)
+
             .post('/api/register')
+
             .send({
 
                 "teacher":"rodriguez.michale@example.com",
                 "students":["prosacco.zackery@example.com"]
             })
+
             .end(function(err,ctx,next) {
 
                 expect(ctx).to.have.status(204);   
@@ -32,9 +38,12 @@ describe('Test API',function(){
 
      //*** one teacher ***/
 
-     it('should return array',(done)=>{
+     it('should return array for path commonstudents under one teacher',(done)=>{
+
         chai.request(server)
+
             .get('/api/commonstudents?teacher=brooks.stehr@example.org')
+
             .end(function(err,ctx,next) {
                
                 expect(ctx.body).to.have.property('students').with.match('student_only_under_brooks.stehr@example.org')
@@ -46,8 +55,10 @@ describe('Test API',function(){
 
      //*** two or more teachers ***//
 
-     it('should return array',(done)=>{
+     it('should return array for path commonstudents under two or more teachers',(done)=>{
+
         chai.request(server)
+
             .get('/api/commonstudents?teacher=brooks.stehr@example.org&teacher=rodriguez.michale@example.com')
             .end(function(err,ctx,next) {
 
@@ -57,13 +68,18 @@ describe('Test API',function(){
         done();
     })
 
+    /*
+    *test path suspend
+    */
 
-    //*** test path suspend  ***//
+    it('should return HTTP Code 204 for path suspend',(done)=>{
 
-    it('should return HTTP Code 204',(done)=>{
         chai.request(server)
+
             .post('/api/suspend')
+
             .send({
+
                     "student":"lelah75@example.net"
             })
             .end(function(err,ctx,next) {
@@ -74,20 +90,30 @@ describe('Test API',function(){
         done();
     })
 
+    
+    /*
+    *test path retrievefornotifications
+    */
 
-    //*** test path retrievefornotifications  ***//
+    it('should return array for path retrievefornotifications',(done)=>{
 
-    it('should return array',(done)=>{
         chai.request(server)
+
             .post('/api/retrievefornotifications')
+
             .send({
+
                 "teacher":  "brooks.stehr@example.org",
                 "notification": "Hello students! @studentagnes@example.com @studentmiche@example.com"
             })
+
             .end(function(err,ctx,next) {
+
                 expect(ctx.body).to.have.property('recipients');
+
                 expect(ctx).to.have.status(200); 
             });
+
         done();
     })
 
