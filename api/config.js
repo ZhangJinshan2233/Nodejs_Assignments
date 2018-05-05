@@ -1,5 +1,5 @@
 const config={
-    //set up database
+    //*** set up database ***//
     database:{
         DATABASE:'heroku_8a9dfd8ed76ed69',
         USERNAME:'ba5300ad080b97',

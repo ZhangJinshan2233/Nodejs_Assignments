@@ -6,7 +6,7 @@ const Router=require('koa-router')
 const administrateController=require('../controller/administration')
 const router=new Router({prefix:'/api'});
 
-//design router
+//*** design router ***//
 router
 
     .post('/register', administrateController.Register)

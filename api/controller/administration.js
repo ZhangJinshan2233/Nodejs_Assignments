@@ -92,7 +92,8 @@ module.exports={
 
                             }
 
-                            //return result
+                            // *** return result *** //
+                        
                             ctx.status=204;
                         }
                 }
@@ -131,7 +132,8 @@ module.exports={
                 if(typeof(ctx.query.teacher)==="string"){
 
                     const teaId=await teacherStuModel.findIdByTeacheremail(ctx.query.teacher);
-                    //check teacher exist or not
+                   
+                    // *** check teacher exist or not *** //
                     if (teaId.length<1){
 
                         ctx.status=500;
@@ -151,7 +153,7 @@ module.exports={
 
                         studentEmail.push("student_only_under_"+ctx.query.teacher);
 
-                        //return result
+                        //*** return result ***//
 
                         ctx.status=200;
 
@@ -166,14 +168,14 @@ module.exports={
                     * students under two or more teachers
                     */
 
-                    //find all students
+                    //*** find all students ***//
                     var studentsEmail=[]
                     var commmonStudentEmail=[]
                    
                     for (var i of ctx.query.teacher ){
 
                         const teaId=await teacherStuModel.findIdByTeacheremail(i);
-                        //check teacher exist or not
+                        //*** check teacher exist or not ***//
                         if (teaId.length<1){
                             return [ctx.status=404,ctx.json({
                                         message:"Please input correct teacher email address"
@@ -196,14 +198,14 @@ module.exports={
                         }
                     }
 
-                    //find common students
+                    //*** find common students ***//
                     studentsEmail.forEach((item)=>{
                         if(studentsEmail.indexOf(item)!=studentsEmail.lastIndexOf(item)&&commmonStudentEmail.indexOf(item)==-1){
                             commmonStudentEmail.push(item)
                         }
                     })
                     
-                    //return result
+                    //*** return result ***//
                     ctx.status=200;
                     ctx.json({
                         students:commmonStudentEmail
@@ -240,7 +242,7 @@ module.exports={
  
                  const stuId= await teacherStuModel.findIdByStudentemail(ctx.request.body.student);
                   
-                 //check email  exist or not
+                 //*** check email  exist or not ***//
  
                  if (stuId.length<1){
  
@@ -314,7 +316,7 @@ module.exports={
     
                 const teaId=await teacherStuModel.findIdByTeacheremail(teacherEmail);
     
-                //check teacher email exist or not
+                //*** check teacher email exist or not ***//
     
                 if (teaId.length<1){  
     
@@ -348,7 +350,7 @@ module.exports={
                     })
     
                     studentEmailNeedNotificated.push("original_student_under_"+teacherEmail)
-                   
+                      //*** return result ***//
                     ctx.status=200;
                     ctx.json({
                         "recipients":studentEmailNeedNotificated

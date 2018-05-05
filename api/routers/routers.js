@@ -3,6 +3,7 @@
  */
 const adiminsterRouter=require('./adminster')
 const homeRouter=require('./home')
+
 module.exports={
 
    adiminsterRouter:adiminsterRouter,

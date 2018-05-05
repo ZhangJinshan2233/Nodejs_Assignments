@@ -9,10 +9,8 @@ module.exports=()=>{
        
         ctx.set("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, POST, DELETE");
     
-     
         ctx.set("Access-Control-Allow-Headers", "*");
     
-        
         ctx.set("Content-Type", "application/json;charset=utf-8;form-data");
     
         ctx.set("Access-Control-Allow-Credentials", true);

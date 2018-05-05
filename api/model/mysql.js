@@ -8,7 +8,7 @@ const mysql=require('koa-mysql');
 
 const config=require('../config')
 
-//set up parameters
+//*** set up parameters ***//
 
 var pool  = mysql.createPool({
     host     : config.database.HOST,
@@ -18,7 +18,7 @@ var pool  = mysql.createPool({
     port     : config.database.PORT
   });
 
-  //define query function
+  //*** define query function ***//
 
   const query = ( sql, values ) => {
 
@@ -41,13 +41,13 @@ var pool  = mysql.createPool({
   
   }
 
-// create table function
+//*** create table function ***//
 
   const createTable = ( sql ) => {
     return query( sql, [] )
   }
  
-  //design table
+  //*** design table ***//
 
   const teachers =
     `create table if not exists teachers(
@@ -68,21 +68,21 @@ var pool  = mysql.createPool({
      const teachers_students=
     `create table if not exists teachers_students(
       id INT NOT NULL AUTO_INCREMENT,
-      teacher_id  int,
-      student_id  int,
+      teacher_id  INT NOT NULL,
+      student_id  INT NOT NULL,
       status VARCHAR(100) NOT NULL,
       PRIMARY KEY ( id ),
       constraint teacher_fk foreign key(teacher_id) references teachers(id),
       constraint student_fk foreign key(student_id) references students(id)
      );`
 
-    // produce table
+    //*** produce table ***//
 
     createTable(students);
     createTable(teachers);
     createTable(teachers_students);
 
-    //insert data into teachers_students table
+    //*** insert data into teachers_students table ***//
 
     exports.insertData = (value) => {
 
@@ -91,7 +91,7 @@ var pool  = mysql.createPool({
 
     }
 
-    //find teacher id through teacher email
+    //*** find teacher id through teacher email ***//
     
     exports.findIdByTeacheremail=(value)=>{
 
@@ -100,7 +100,7 @@ var pool  = mysql.createPool({
 
     }
 
-    //find student id through student email
+    //*** find student id through student email ***//
 
     exports.findIdByStudentemail=(value)=>{
 
@@ -109,7 +109,7 @@ var pool  = mysql.createPool({
 
     }
 
-    //find students emails by teacher email 
+    //*** find students emails by teacher email ***//
 
     exports.findStudentsByTeacherEmail=(value)=>{
 
@@ -120,7 +120,7 @@ var pool  = mysql.createPool({
 
     }
 
-    //change status of stuent in teachers_students table
+    //*** change status of stuent in teachers_students table ***//
 
     exports.suspendStuent=(value)=>{
 
@@ -129,7 +129,7 @@ var pool  = mysql.createPool({
      
     }
 
-    //find students who status is NoSuspend by teacher email 
+    //*** find students who status is NoSuspend by teacher email ***//
 
     exports.findStudentsByTeacherEmailNosuapend=(value)=>{
 
@@ -140,7 +140,7 @@ var pool  = mysql.createPool({
 
     }
 
-    //find student and teacher by student id and teacher id in teachers_students
+    //*** find student and teacher by student id and teacher id in teachers_students ***//
     exports.findStudentAndTeacher=(teacherId,studentId)=>{
 
       const _sql=`select id from teachers_students where teacher_id="${teacherId}" and student_id="${studentId}";`
