@@ -19,8 +19,8 @@ describe('Test API',function(){
 
             .send({
 
-                "teacher":"rodriguez.michale@example.com",
-                "students":["prosacco.zackery@example.com"]
+                "teacher":"jesus.tremblay@example.net",
+                "students":["chris03@example.net"]
             })
 
             .end(function(err,ctx,next) {
@@ -42,7 +42,7 @@ describe('Test API',function(){
 
         chai.request(server)
 
-            .get('/api/commonstudents?teacher=brooks.stehr@example.org')
+            .get('/api/commonstudents?teacher=shields.maci@example.org')
 
             .end(function(err,ctx,next) {
                
@@ -59,7 +59,7 @@ describe('Test API',function(){
 
         chai.request(server)
 
-            .get('/api/commonstudents?teacher=brooks.stehr@example.org&teacher=rodriguez.michale@example.com')
+            .get('/api/commonstudents?teacher=shields.maci@example.org&teacher=roa.hilario@example.net')
             .end(function(err,ctx,next) {
 
                 expect(ctx).to.have.status(200); 
@@ -80,7 +80,7 @@ describe('Test API',function(){
 
             .send({
 
-                    "student":"lelah75@example.net"
+                    "student":"chris03@example.net"
             })
             .end(function(err,ctx,next) {
 
@@ -103,7 +103,7 @@ describe('Test API',function(){
 
             .send({
 
-                "teacher":  "brooks.stehr@example.org",
+                "teacher":  "shields.maci@example.org",
                 "notification": "Hello students! @studentagnes@example.com @studentmiche@example.com"
             })
 

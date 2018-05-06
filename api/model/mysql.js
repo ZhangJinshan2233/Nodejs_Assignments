@@ -51,30 +51,30 @@ var pool  = mysql.createPool({
 
   const teachers =
     `create table if not exists teachers(
-     id int(11) NOT NULL AUTO_INCREMENT,
-     name VARCHAR(100) NOT NULL,
-     email VARCHAR(100) NOT NULL,
-     PRIMARY KEY (id)
-    );`
+      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+           name VARCHAR(100) NOT NULL,
+           email VARCHAR(100) NOT NULL UNIQUE,
+           PRIMARY KEY (id)
+      ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;`
     
     const students=
     `create table if not exists students(
       id int(11) NOT NULL AUTO_INCREMENT,
       name VARCHAR(100) NOT NULL,
-      email VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL UNIQUE,
       PRIMARY KEY (id)
      );`
 
      const teachers_students=
     `create table if not exists teachers_students(
-      id INT NOT NULL AUTO_INCREMENT,
-      teacher_id  INT NOT NULL,
-      student_id  INT NOT NULL,
+      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+      teacher_id  INT UNSIGNED NOT NULL,
+      student_id  INT UNSIGNED NOT NULL,
       status VARCHAR(100) NOT NULL,
       PRIMARY KEY ( id ),
-      constraint teacher_fk foreign key(teacher_id) references teachers(id),
-      constraint student_fk foreign key(student_id) references students(id)
-     );`
+      constraint teacher_fk foreign key(teacher_id) references teachers(id) on update cascade on delete cascade,
+      constraint student_fk foreign key(student_id) references students(id) on update cascade on delete cascade
+     ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;`
 
     //*** produce table ***//
 
