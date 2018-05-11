@@ -76,7 +76,7 @@ module.exports={
                                 var  teacherStu={
                                     teacher_id:teacherId,
                                     student_id:stuid,
-                                    status:"Not suspend"
+                                    status:"Nosuspend"
                                 }
 
                                  /*
@@ -94,14 +94,22 @@ module.exports={
 
                             // *** return result *** //
                         
-                            ctx.status=204;
+                            ctx.status=200;
+
+                            ctx.json({
+                                status:200,
+                                message:"registered successfully",
+                                
+                            })
                         }
                 }
 
         }catch(err){
             ctx.status=500;
             ctx.json({
-                error:err
+
+                code: err.code || 'internal:unknown_error',
+                message: err.message || ''
             })
         }
           
@@ -158,7 +166,7 @@ module.exports={
                         ctx.status=200;
 
                         ctx.json({
-
+                            status:200,
                             students:studentEmail
                         })
                     }  
@@ -208,6 +216,7 @@ module.exports={
                     //*** return result ***//
                     ctx.status=200;
                     ctx.json({
+                        status:200,
                         students:commmonStudentEmail
                     })  
 
@@ -215,8 +224,11 @@ module.exports={
             }
         }catch(err){
             ctx.status=500;
+
             ctx.json({
-                error:err
+
+                code: err.code || 'internal:unknown_error',
+                message: err.message || ''
             })
         } 
     },
@@ -256,7 +268,11 @@ module.exports={
  
                      await teacherStuModel.suspendStuent(["suspend",studentId]);
  
-                     ctx.status=204;
+                     ctx.status=200;
+                     vtx.json({
+                         status:200,
+                         message:"updated status successfully"
+                     })
                  }  
              }
         }catch(err){
@@ -264,8 +280,10 @@ module.exports={
              ctx.status=500;
  
              ctx.json({
-                 error:err
-             })
+                
+                code: err.code || 'internal:unknown_error',
+                message: err.message || ''
+            })
          }     
      },
 
@@ -353,6 +371,7 @@ module.exports={
                       //*** return result ***//
                     ctx.status=200;
                     ctx.json({
+                        status:200,
                         "recipients":studentEmailNeedNotificated
                     })
                 }
@@ -363,8 +382,9 @@ module.exports={
             ctx.status=500;
     
             ctx.json({
-    
-                error:err
+                
+                code: err.code || 'internal:unknown_error',
+                message: err.message || ''
             })
         }
     
