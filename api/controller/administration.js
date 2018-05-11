@@ -269,7 +269,7 @@ module.exports={
                      await teacherStuModel.suspendStuent(["suspend",studentId]);
  
                      ctx.status=200;
-                     vtx.json({
+                     ctx.json({
                          status:200,
                          message:"updated status successfully"
                      })
